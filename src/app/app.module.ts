@@ -10,11 +10,13 @@ import {MatInputModule} from '@angular/material/input';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AppComponent } from 'src/app/app.component';
 import { DialogComponent } from 'src/app/dialog/dialog.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DialogComponent
+    DialogComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
