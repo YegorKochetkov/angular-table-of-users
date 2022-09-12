@@ -1,3 +1,11 @@
-mat-form-field {
+.mat-dialog-content {
+  min-width: 60vw;
+}
+
+.mat-form-field {
   width: 100%;
+}
+
+.mat-dialog-actions {
+  justify-content: flex-end;
 }
