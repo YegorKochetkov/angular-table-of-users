@@ -1,5 +1,6 @@
 .mat-dialog-content {
-  min-width: 60vw;
+  min-width: min-content;
+  max-width: 500px;
 }
 
 .mat-form-field {

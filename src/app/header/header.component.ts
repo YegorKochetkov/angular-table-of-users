@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(DialogComponent, {
-      width: 'min-content'
+      minWidth: 'fit-content',
     });
   }
 
