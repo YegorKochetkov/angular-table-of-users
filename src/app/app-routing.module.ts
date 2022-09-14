@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'dashboard', redirectTo: '/dashboard/1', pathMatch: 'full' },
   { path: 'dashboard/:page', component: TableComponent },
   { path: 'details/:id', component: DetailsComponent },
-  { path: '**', component: Page404Component }
+  { path: '404', component: Page404Component },
+  { path: '**', redirectTo: '404', pathMatch: 'full' }
 ];
 
 @NgModule({
