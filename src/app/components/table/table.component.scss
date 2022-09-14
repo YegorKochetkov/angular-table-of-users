@@ -1,15 +1,15 @@
-.mat-table {
-  width: 100%;
+.table-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 16px;
 }
 
 .table {
   overflow-y: hidden;
 }
 
-.table-container {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 16px;
+.mat-table {
+  width: 100%;
 }
 
 .mat-form-field {
