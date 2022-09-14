@@ -19,7 +19,11 @@
       formControlName="fullname"
       required
     />
-    <mat-error *ngIf="addNewUser.get('fullname')?.hasError('required')">
+    <mat-error
+      *ngIf="
+        addNewUser.get('fullname')?.hasError('required')
+      "
+    >
       Name is <strong>required</strong>
     </mat-error>
   </mat-form-field>
@@ -36,13 +40,21 @@
       formControlName="email"
       required
     />
-    <mat-error *ngIf="addNewUser.get('email')?.hasError('email') && !addNewUser.get('email')?.hasError('required')">
+    <mat-error
+      *ngIf="
+        addNewUser.get('email')?.hasError('pattern')
+        && !addNewUser.get('email')?.hasError('required')
+      "
+    >
       Please enter a valid email address
     </mat-error>
-    <mat-error *ngIf="addNewUser.get('email')?.hasError('required')">
+    <mat-error
+      *ngIf="
+        addNewUser.get('email')?.hasError('required')
+      "
+    >
       Email is <strong>required</strong>
     </mat-error>
-
   </mat-form-field>
 
   <mat-form-field appearance="outline">
@@ -57,6 +69,21 @@
       formControlName="phone"
       required
     />
+    <mat-error
+      *ngIf="
+        addNewUser.get('phone')?.hasError('pattern')
+        && !addNewUser.get('phone')?.hasError('required')
+      "
+    >
+      Please enter a valid phone number
+    </mat-error>
+    <mat-error
+      *ngIf="
+        addNewUser.get('phone')?.hasError('required')
+      "
+    >
+    Phone is <strong>required</strong>
+    </mat-error>
   </mat-form-field>
 
   <div formGroupName="address">
