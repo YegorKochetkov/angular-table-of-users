@@ -19,6 +19,10 @@
 
 .mat-cell {
   padding: 5px;
+
+  &-email {
+    overflow-wrap: anywhere;
+  }
 }
 
 .mat-row {

@@ -26,7 +26,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
   private routeSub: Subscription | undefined;
 
   displayedColumns: string[] = [
-    'id', 'fullname', 'email', 'phone', 'city', 'country', 'action'
+    'id', 'fullname', 'email', 'phone', 'city', 'country', 'street', 'action'
   ];
   dataSource: MatTableDataSource<UserInterface>;
   pageEvent: PageEvent | undefined;
