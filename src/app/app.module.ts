@@ -19,6 +19,7 @@ import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { TableComponent } from 'src/app/components/table/table.component';
 import { DetailsComponent } from './components/details/details.component';
+import { Page404Component } from './components/page404/page404.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DetailsComponent } from './components/details/details.component';
     DialogComponent,
     HeaderComponent,
     TableComponent,
-    DetailsComponent
+    DetailsComponent,
+    Page404Component
   ],
   imports: [
     BrowserModule,

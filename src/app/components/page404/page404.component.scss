@@ -1,0 +1,20 @@
+.details {
+  text-align: center;
+
+  width: 50vw;
+  min-width: fit-content;
+  max-width: 50%;
+
+  margin: 0 auto;
+  margin-top: 16px;
+
+  &-title {
+    margin-bottom: 24px;
+  }
+
+  &-content {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+}
