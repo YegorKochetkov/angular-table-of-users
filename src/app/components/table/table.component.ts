@@ -45,7 +45,11 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
       this.routeSub = this.route.params.subscribe(params => {
         const currPage = parseInt(params['page']);
 
-        if (currPage) {
+        if (!currPage) {
+          this.router.navigate(['/']);
+        }
+
+        if (!!currPage) {
           this.pageIndex.next(currPage);
 
           setTimeout(() => {
