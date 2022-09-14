@@ -1,6 +1,6 @@
 .details {
-  width: fit-content;
-  min-width: min-content;
+  width: 33vw;
+  min-width: fit-content;
   max-width: 40%;
 
   margin: 0 auto;
@@ -11,12 +11,15 @@
   }
 
   &-title {
-    // font-size: 1.1rem;
     margin-bottom: 16px;
   }
 
   &-subtitle,
   &-content {
     font-size: large;
+  }
+
+  &-content > strong {
+    margin-right: 10px;
   }
 }
