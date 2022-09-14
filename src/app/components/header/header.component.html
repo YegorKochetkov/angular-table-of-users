@@ -16,7 +16,7 @@
   <span class="toolbar-spacer"></span>
 
   <button
-    *ngIf="router.url === '/dashboard'; else editButton"
+    *ngIf="router.url.includes('dashboard') ; else editButton"
     mat-raised-button
     color="accent"
     (click)="openDialog()"
