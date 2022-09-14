@@ -1,0 +1,18 @@
+.user-card {
+  width: fit-content;
+  min-width: min-content;
+  max-width: 40%;
+
+  margin: 0 auto;
+  margin-top: 16px;
+
+  &__title {
+    // font-size: 1.1rem;
+    margin-bottom: 16px;
+  }
+
+  &__subtitle,
+  &__content {
+    font-size: large;
+  }
+}

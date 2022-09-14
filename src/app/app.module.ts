@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AppComponent } from 'src/app/app.component';
@@ -39,6 +40,7 @@ import { DetailsComponent } from './components/details/details.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatCardModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

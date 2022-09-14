@@ -1,11 +1,30 @@
-<div *ngIf="user">
-  <h2>
-    {{user.fullname | uppercase}} details
-  </h2>
-  <p>
-    <strong>id: </strong>{{user.id}}
-  </p>
-  <p>
-    <strong>email: </strong>{{user.email}}
-  </p>
-</div>
+<mat-card class="user-card">
+  <mat-card-title-group>
+    <mat-card-title class="user-card__title">
+      {{user?.fullname | uppercase}}
+    </mat-card-title>
+    <mat-card-subtitle class="user-card__subtitle">
+      <strong>id: </strong>{{user?.id}}
+    </mat-card-subtitle>
+  </mat-card-title-group>
+  <mat-card-content>
+    <p class="user-card__content">
+      <strong>Phone: </strong>{{user?.phone}}
+    </p>
+    <p class="user-card__content">
+      <strong>Email: </strong>{{user?.email}}
+    </p>
+    <p class="user-card__content">
+      <strong>Street: </strong>{{user?.address?.street}}
+    </p>
+    <p class="user-card__content">
+      <strong>City: </strong>{{user?.address?.city}}
+    </p>
+    <p class="user-card__content">
+      <strong>State: </strong>{{user?.address?.state}}
+    </p>
+    <p class="user-card__content">
+      <strong>Country: </strong>{{user?.address?.country}}
+    </p>
+  </mat-card-content>
+</mat-card>
