@@ -14,6 +14,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 
 import { ApiService } from 'src/app/services/api.service';
 import { UserInterface } from 'src/app/types/user.type';
+import { getNestedValues } from 'src/app/helpers/getNestedValues';
 
 @Component({
   selector: 'app-table',
@@ -96,12 +97,18 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     const filterValue = (event.target as HTMLInputElement).value;
+
+    this.dataSource.filterPredicate = (data, filter) => {
+      const textToSearch = getNestedValues(data, []).join();
+      console.log(textToSearch)
+      return textToSearch.toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1;
+    };
+
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   goToUserDetails(id: number) {
     this.router.navigate(['/details', id]);
-
   }
 
   goToPage(event: PageEvent | undefined) {
