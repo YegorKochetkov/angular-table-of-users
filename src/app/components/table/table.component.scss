@@ -1,0 +1,35 @@
+.mat-table {
+  width: 100%;
+}
+
+.table {
+  overflow-y: hidden;
+}
+
+.table-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-cell {
+  padding: 5px;
+}
+
+.mat-row {
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+  }
+}
+
+.mat-column-action {
+  width: 1px;;
+}
