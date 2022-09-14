@@ -7,7 +7,12 @@
   >
     <mat-icon>supervised_user_circle</mat-icon>
   </button>
-  <span>Users table app [CRUD, Angular Forms, Material UI]</span>
+  <span
+    class="toolbar-title"
+    title="Users table app [CRUD, Angular Forms, Material UI]"
+  >
+    Users table app [CRUD, Angular Forms, Material UI]
+  </span>
   <span class="toolbar-spacer"></span>
   <button
     *ngIf="router.url === '/dashboard'; else editButton"
