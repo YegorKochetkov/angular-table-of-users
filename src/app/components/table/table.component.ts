@@ -5,16 +5,18 @@ import {
   ViewChild,
   OnDestroy
 } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 import { BehaviorSubject, Subscription } from 'rxjs';
 
 import { ApiService } from 'src/app/services/api.service';
 import { UserInterface } from 'src/app/types/user.type';
 import { getNestedValues } from 'src/app/helpers/getNestedValues';
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-table',
@@ -38,7 +40,8 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private api: ApiService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialog: MatDialog,
   ) {
       this.dataSource = new MatTableDataSource();
 
@@ -121,5 +124,11 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.pageEvent) {
       this.router.navigate(['/dashboard', this.pageEvent.pageIndex + 1]);
     }
+  }
+
+  deleteUser(id: number) {
+    this.dialog.open(DialogComponent, {
+      minWidth: 'fit-content',
+    });
   }
 }
