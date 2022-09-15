@@ -13,7 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { BehaviorSubject, Subscription } from 'rxjs';
 
-import { ApiService } from 'src/app/services/api.service';
+import { ApiService } from 'src/app/services/users.service';
 import { UserInterface } from 'src/app/types/user.type';
 import { getNestedValues } from 'src/app/helpers/getNestedValues';
 import { DeleteConfirmationComponent } from 'src/app/components/delete-confirmation/delete-confirmation.component';
