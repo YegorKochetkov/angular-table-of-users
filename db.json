@@ -95,6 +95,30 @@
         "country": ""
       },
       "id": 8
+    },
+    {
+      "fullname": "Егор Николаевич Кочетков",
+      "email": "kegor.fx@gmail.com",
+      "phone": "+380667237224",
+      "address": {
+        "street": "вул. Романа Атаманюка, б.43А, кв.118",
+        "city": "Сумы",
+        "state": "Сумская",
+        "country": "Ukraine"
+      },
+      "id": 9
+    },
+    {
+      "fullname": "Єгор Миколайович Кочетков",
+      "email": "kegor.fx@gmail.com",
+      "phone": "+380667237224",
+      "address": {
+        "street": "40031 (вулиця Ковпака, 59/4)",
+        "city": "Сумы",
+        "state": "",
+        "country": ""
+      },
+      "id": 10
     }
   ]
 }
