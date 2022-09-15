@@ -1,10 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   FormGroup,
   Validators,
   FormBuilder,
 } from '@angular/forms';
-import { ApiService } from '../../services/api.service';
+
+import { ApiService } from 'src/app/services/users.service';
+import { UserInterface } from 'src/app/types/user.type';
+
+interface DialogData {
+  user: UserInterface,
+}
 
 @Component({
   selector: 'app-dialog',
@@ -14,10 +21,12 @@ import { ApiService } from '../../services/api.service';
 
 export class DialogComponent implements OnInit {
   addNewUser: FormGroup;
+  buttonActionText: string = 'Save';
 
   constructor(
     private formBuilder: FormBuilder,
-    private api: ApiService
+    private api: ApiService,
+    @Inject(MAT_DIALOG_DATA) public editableData: DialogData
   ) {
     this.addNewUser = this.formBuilder.group({
       fullname: ['', [Validators.required]],
@@ -42,7 +51,19 @@ export class DialogComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.editableData) {
+      this.buttonActionText = 'Update';
+
+      this.addNewUser.controls['fullname'].setValue(this.editableData.user.fullname);
+      this.addNewUser.controls['email'].setValue(this.editableData.user.email);
+      this.addNewUser.controls['phone'].setValue(this.editableData.user.phone);
+      this.addNewUser.controls['address'].get('street')?.setValue(this.editableData.user.address.street);
+      this.addNewUser.controls['address'].get('city')?.setValue(this.editableData.user.address.city);
+      this.addNewUser.controls['address'].get('state')?.setValue(this.editableData.user.address.state);
+      this.addNewUser.controls['address'].get('country')?.setValue(this.editableData.user.address.country);
+    }
+  }
 
   submit() {
     this.api.addUser(this.addNewUser.value)
@@ -54,5 +75,17 @@ export class DialogComponent implements OnInit {
           console.error('error while adding a user: ', error.message)
         }
       })
+
+    if (this.editableData) {
+      this.api.updateUser(this.addNewUser.value)
+      .subscribe({
+        next: (result) => {
+          console.log('user updated!')
+        },
+        error: (error) => {
+          console.error('error while updating a user: ', error.message)
+        }
+      })
+    }
   }
 }
