@@ -33,6 +33,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
   dataSource: MatTableDataSource<UserInterface>;
   pageEvent: PageEvent | undefined;
   pageIndex = new BehaviorSubject<number>(0);
+  pageSize = new BehaviorSubject<number>(10);
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   @ViewChild(MatSort) sort: MatSort | undefined;
@@ -73,6 +74,11 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
         this.dataSource.paginator.pageIndex = this.pageIndex.getValue() - 1;
       }
     }, 0);
+
+    const currentPageSize = localStorage.getItem('pageSize');
+    if (currentPageSize) {
+      this.pageSize.next(parseInt(currentPageSize));
+    }
   }
 
   ngOnDestroy() {
@@ -118,11 +124,18 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
     this.router.navigate(['/details', id]);
   }
 
-  goToPage(event: PageEvent | undefined) {
+  handlePaginator(event: PageEvent | undefined) {
     this.pageEvent = event;
 
     if (this.pageEvent) {
-      this.router.navigate(['/dashboard', this.pageEvent.pageIndex + 1]);
+      if (this.pageEvent.pageSize !== this.pageSize.getValue()) {
+        this.pageSize.next(this.pageEvent.pageSize);
+        localStorage.setItem('pageSize', this.pageEvent.pageSize.toString());
+      }
+
+      if (this.pageEvent.previousPageIndex !== this.pageEvent.pageIndex) {
+        this.router.navigate(['/dashboard', this.pageEvent.pageIndex + 1]);
+      }
     }
   }
 
