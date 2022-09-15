@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ApiService } from 'src/app/services/api.service';
+import { ApiService } from 'src/app/services/users.service';
 import { UserInterface } from 'src/app/types/user.type';
 
 @Component({
@@ -23,10 +23,12 @@ export class DetailsComponent implements OnInit {
 
   getUser(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+
     this.api.getUser(id)
       .subscribe({
         next: (user) => {
           this.user = user;
+          this.api.currentUser.next(user);
         },
         error: (error) => {
           console.error('error while fetching users: ', error.message)
