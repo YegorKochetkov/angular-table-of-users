@@ -23,7 +23,7 @@ import { getNestedValues } from 'src/app/helpers/getNestedValues';
 })
 
 export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
-  private routeSub: Subscription | undefined;
+  private routeSubscription: Subscription | undefined;
 
   displayedColumns: string[] = [
     'id', 'fullname', 'email', 'phone', 'city', 'country', 'street', 'action'
@@ -42,19 +42,19 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
   ) {
       this.dataSource = new MatTableDataSource();
 
-      this.routeSub = this.route.params.subscribe(params => {
-        const currPage = parseInt(params['page']);
+      this.routeSubscription = this.route.params.subscribe(params => {
+        const currTablePage = parseInt(params['page']);
 
-        if (!currPage) {
+        if (isNaN(currTablePage)) {
           this.router.navigate(['/']);
         }
 
-        if (!!currPage) {
-          this.pageIndex.next(currPage);
+        if (!!currTablePage) {
+          this.pageIndex.next(currTablePage);
 
           setTimeout(() => {
             if (this.dataSource.paginator) {
-              this.dataSource.paginator.pageIndex = currPage - 1;
+              this.dataSource.paginator.pageIndex = currTablePage - 1;
               this.ngAfterViewInit();
             }
           }, 0);
@@ -73,7 +73,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy() {
-    this.routeSub?.unsubscribe();
+    this.routeSubscription?.unsubscribe();
   }
 
   getAllUsers() {
