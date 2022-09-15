@@ -20,6 +20,7 @@ import { HeaderComponent } from 'src/app/components/header/header.component';
 import { TableComponent } from 'src/app/components/table/table.component';
 import { DetailsComponent } from './components/details/details.component';
 import { Page404Component } from './components/page404/page404.component';
+import { DeleteConfirmationComponent } from './components/delete-confirmation/delete-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { Page404Component } from './components/page404/page404.component';
     HeaderComponent,
     TableComponent,
     DetailsComponent,
-    Page404Component
+    Page404Component,
+    DeleteConfirmationComponent
   ],
   imports: [
     BrowserModule,

@@ -16,7 +16,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import { UserInterface } from 'src/app/types/user.type';
 import { getNestedValues } from 'src/app/helpers/getNestedValues';
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { DeleteConfirmationComponent } from 'src/app/components/delete-confirmation/delete-confirmation.component';
 
 @Component({
   selector: 'app-table',
@@ -126,9 +126,12 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  deleteUser(id: number) {
-    this.dialog.open(DialogComponent, {
+  deleteConfirmation(id: number) {
+    this.dialog.open(DeleteConfirmationComponent, {
       minWidth: 'fit-content',
+      data: {
+        id,
+      }
     });
   }
 }
