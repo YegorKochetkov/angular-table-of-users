@@ -8,10 +8,15 @@
 
   &-titleGroup {
     margin-bottom: 16px;
+    border-bottom: 1px solid lightgrey;
   }
 
   &-title {
     margin-bottom: 16px;
+  }
+
+  &-subtitle {
+    text-align: right;
   }
 
   &-subtitle,
@@ -19,7 +24,9 @@
     font-size: large;
   }
 
-  &-content > strong {
-    margin-right: 10px;
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
   }
 }
