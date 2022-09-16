@@ -76,6 +76,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
     }, 0);
 
     const currentPageSize = localStorage.getItem('pageSize');
+    
     if (currentPageSize) {
       this.pageSize.next(parseInt(currentPageSize));
     }
