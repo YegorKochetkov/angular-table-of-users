@@ -12,7 +12,8 @@ export class Page404Component implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   goHome() {
     this.router.navigate(['/']);

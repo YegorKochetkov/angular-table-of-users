@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
     this.dialog.open(DialogComponent, {
       minWidth: 'fit-content',
       data: {
-        user: this.api.currentUser.getValue(),
+        user: this.api.currentUser$.getValue(),
       }
     });
   }
