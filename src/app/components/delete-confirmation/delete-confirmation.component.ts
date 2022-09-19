@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { filter } from 'rxjs';
 
 import { ApiService } from 'src/app/services/users.service';
 

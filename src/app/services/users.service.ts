@@ -21,14 +21,20 @@ export class ApiService {
   addUser(user: UserInterface): void {
     this.loading$.next(true);
     this.http.post<UserInterface>(this.baseURL, user)
-      .subscribe(() => this.getUsers()
-    );
+      .subscribe(() => this.getUsers());
   }
 
   deleteUser(id: number): void {
     this.loading$.next(true);
     this.http.delete<UserInterface>(this.baseURL + id)
-      .subscribe(() => this.getUsers()
+      .subscribe(() => {
+        const updatedUsersList = this.usersList$
+          .getValue()
+          .filter((user) => user.id !== id);
+
+        this.usersList$.next(updatedUsersList);
+        this.loading$.next(false);
+      }
     );
   }
 
