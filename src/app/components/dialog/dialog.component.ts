@@ -55,37 +55,32 @@ export class DialogComponent implements OnInit {
     if (this.editableData) {
       this.buttonActionText = 'Update';
 
-      this.addNewUser.controls['fullname'].setValue(this.editableData.user.fullname);
-      this.addNewUser.controls['email'].setValue(this.editableData.user.email);
-      this.addNewUser.controls['phone'].setValue(this.editableData.user.phone);
-      this.addNewUser.controls['address'].get('street')?.setValue(this.editableData.user.address.street);
-      this.addNewUser.controls['address'].get('city')?.setValue(this.editableData.user.address.city);
-      this.addNewUser.controls['address'].get('state')?.setValue(this.editableData.user.address.state);
-      this.addNewUser.controls['address'].get('country')?.setValue(this.editableData.user.address.country);
+      this.addNewUser.controls['fullname']
+        .setValue(this.editableData.user.fullname);
+      this.addNewUser.controls['email']
+        .setValue(this.editableData.user.email);
+      this.addNewUser.controls['phone']
+        .setValue(this.editableData.user.phone);
+
+      this.addNewUser.controls['address'].get('street')
+        ?.setValue(this.editableData.user.address.street);
+      this.addNewUser.controls['address'].get('city')
+        ?.setValue(this.editableData.user.address.city);
+      this.addNewUser.controls['address'].get('state')
+        ?.setValue(this.editableData.user.address.state);
+      this.addNewUser.controls['address'].get('country')
+        ?.setValue(this.editableData.user.address.country);
     }
   }
 
   submit() {
-    this.api.addUser(this.addNewUser.value)
-      .subscribe({
-        next: (result) => {
-          console.log('user added!')
-        },
-        error: (error) => {
-          console.error('error while adding a user: ', error.message)
-        }
-      })
-
     if (this.editableData) {
-      this.api.updateUser(this.addNewUser.value)
-      .subscribe({
-        next: (result) => {
-          console.log('user updated!')
-        },
-        error: (error) => {
-          console.error('error while updating a user: ', error.message)
-        }
-      })
+      this.api.updateUser(
+        this.addNewUser.value,
+        this.api.currentUser$.getValue()!.id
+      );
+    } else {
+      this.api.addUser(this.addNewUser.value)
     }
   }
 }
