@@ -1,5 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { filter } from 'rxjs';
+
+import { ApiService } from 'src/app/services/users.service';
 
 interface DialogData {
   id: number,
@@ -13,9 +16,14 @@ interface DialogData {
 
 export class DeleteConfirmationComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private api: ApiService
+  ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  deleteUser(id: number) {
+    this.api.deleteUser(id);
   }
-
 }
