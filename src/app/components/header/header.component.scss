@@ -9,4 +9,8 @@
 
     font-size: 100%;
   }
+
+  & .mat-raised-button {
+    min-width: min-content;
+  }
 }
