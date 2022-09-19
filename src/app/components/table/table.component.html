@@ -11,6 +11,8 @@
     >
   </mat-form-field>
 
+  <mat-spinner class="spinner" *ngIf="loading" [diameter]="48"></mat-spinner>
+
   <div class="mat-elevation-z8 table">
     <table
       mat-table
@@ -173,7 +175,7 @@
     <mat-paginator
       [pageSizeOptions]="[5, 10, 25, 100]"
       aria-label="Select page of users"
-      [pageIndex]="pageIndex.getValue()"
+      [pageIndex]="tablePageIndex.getValue()"
       [pageSize]="pageSize.getValue()"
       (page)="handlePaginator($event)"
     ></mat-paginator>

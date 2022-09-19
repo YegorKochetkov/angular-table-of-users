@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 import { UserInterface } from 'src/app/types/user.type';
 
@@ -11,27 +11,41 @@ import { UserInterface } from 'src/app/types/user.type';
 
 export class ApiService {
   baseURL = 'http://localhost:3000/users/';
-  currentUser = new BehaviorSubject<UserInterface | null>(null);
 
-  constructor(private http: HttpClient) { }
+  usersList$ = new BehaviorSubject<UserInterface[]>([]);
+  currentUser$ = new BehaviorSubject<UserInterface | null>(null);
+  loading$ = new BehaviorSubject<boolean>(false);
 
-  addUser(user: UserInterface) {
-    return this.http.post<UserInterface>(this.baseURL, user);
+  constructor(private http: HttpClient) {}
+
+  addUser(user: UserInterface): void {
+    this.http.post<UserInterface>(this.baseURL, user)
+      .subscribe(() => this.getUsers());
   }
 
-  updateUser(user: UserInterface) {
-    return this.http.put<UserInterface>(this.baseURL + user.id, user);
+  deleteUser(id: number): void {
+    this.http.delete<UserInterface>(this.baseURL + id)
+      .subscribe(() => this.getUsers());
   }
 
-  deleteUser(id: number) {
-    return this.http.delete<UserInterface>(this.baseURL + id);
+  updateUser(user: UserInterface, id: number): void {
+    this.http.put<UserInterface>(this.baseURL + id, user)
+      .subscribe(() => {
+        this.getUser(id);
+      })
   }
 
-  getUsers() {
-    return this.http.get<UserInterface[]>(this.baseURL);
+  getUsers(): void {
+    this.loading$.next(true);
+    this.http.get<UserInterface[]>(this.baseURL)
+      .subscribe((userList) => {
+        this.usersList$.next(userList);
+        this.loading$.next(false);
+      });
   }
 
-  getUser(id: number) {
-    return this.http.get<UserInterface>(this.baseURL + id);
+  getUser(id: number): void {
+    this.http.get<UserInterface>(this.baseURL + id)
+      .subscribe((user) => this.currentUser$.next(user));
   }
 }

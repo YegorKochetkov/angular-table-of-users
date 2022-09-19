@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AppComponent } from 'src/app/app.component';
@@ -45,6 +46,7 @@ import { DeleteConfirmationComponent } from './components/delete-confirmation/de
     MatPaginatorModule,
     MatSortModule,
     MatCardModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

@@ -26,14 +26,14 @@ import { DeleteConfirmationComponent } from 'src/app/components/delete-confirmat
 
 export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
   private routeSubscription: Subscription | undefined;
-
+  loading = false;
+  dataSource!: MatTableDataSource<UserInterface>;
+  pageEvent: PageEvent | undefined;
+  tablePageIndex = new BehaviorSubject<number>(0);
+  pageSize = new BehaviorSubject<number>(10);
   displayedColumns: string[] = [
     'id', 'fullname', 'email', 'phone', 'city', 'country', 'street', 'action'
   ];
-  dataSource: MatTableDataSource<UserInterface>;
-  pageEvent: PageEvent | undefined;
-  pageIndex = new BehaviorSubject<number>(0);
-  pageSize = new BehaviorSubject<number>(10);
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   @ViewChild(MatSort) sort: MatSort | undefined;
@@ -44,39 +44,45 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
     private route: ActivatedRoute,
     private dialog: MatDialog,
   ) {
-      this.dataSource = new MatTableDataSource();
+    this.api.loading$.subscribe((isLoading) => this.loading = isLoading);
 
-      this.routeSubscription = this.route.params.subscribe(params => {
-        const currTablePage = parseInt(params['page']);
+    this.api.usersList$.subscribe((userList) => {
+      this.dataSource = new MatTableDataSource(userList);
+      this.dataSource.paginator = this.paginator || null;
+      this.dataSource.sort = this.sort || null;
+    });
 
-        if (isNaN(currTablePage)) {
-          this.router.navigate(['/']);
-        }
+    this.routeSubscription = this.route.params.subscribe(params => {
+      const currTablePage = parseInt(params['page']);
 
-        if (!!currTablePage) {
-          this.pageIndex.next(currTablePage);
+      if (isNaN(currTablePage)) {
+        this.router.navigate(['/']);
+      }
 
-          setTimeout(() => {
-            if (this.dataSource.paginator) {
-              this.dataSource.paginator.pageIndex = currTablePage - 1;
-              this.ngAfterViewInit();
+      if (!!currTablePage) {
+        this.tablePageIndex.next(currTablePage - 1);
+
+        setTimeout(() => {
+          if (this.dataSource?.paginator) {
+            const numberOfTablePages = this.dataSource.paginator.getNumberOfPages();
+
+            if ((currTablePage - 1) > numberOfTablePages) {
+              this.router.navigate(['/dashboards', numberOfTablePages]);
             }
-          }, 0);
-        }
-      });
+
+            this.dataSource.paginator.pageIndex = currTablePage - 1;
+            this.dataSource.sort = this.sort || null;
+          }
+        }, 0);
+      }
+    });
   }
 
   ngOnInit(): void {
-    this.getAllUsers();
-
-    setTimeout(() => {
-      if (this.dataSource.paginator) {
-        this.dataSource.paginator.pageIndex = this.pageIndex.getValue() - 1;
-      }
-    }, 0);
+    this.api.getUsers();
 
     const currentPageSize = localStorage.getItem('pageSize');
-    
+
     if (currentPageSize) {
       this.pageSize.next(parseInt(currentPageSize));
     }
@@ -86,20 +92,6 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
     this.routeSubscription?.unsubscribe();
   }
 
-  getAllUsers() {
-    this.api.getUsers()
-      .subscribe({
-        next: (result) => {
-          this.dataSource = new MatTableDataSource(result);
-          this.dataSource.paginator = this.paginator || null;
-          this.dataSource.sort = this.sort || null;
-        },
-        error: (error) => {
-          console.error('error while fetching users: ', error.message)
-        }
-      })
-  }
-
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator || null;
     this.dataSource.sort = this.sort || null;
@@ -107,14 +99,14 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   applyFilter(event: Event) {
     if (this.dataSource.paginator) {
-      this.dataSource.paginator.pageIndex = this.pageIndex.getValue() - 1;
+      this.dataSource.paginator.pageIndex = this.tablePageIndex.getValue() - 1;
     }
 
     const filterValue = (event.target as HTMLInputElement).value;
 
     this.dataSource.filterPredicate = (data, filter) => {
       const textToSearch = getNestedValues(data, []).join();
-      console.log(textToSearch)
+
       return textToSearch.toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1;
     };
 
