@@ -19,18 +19,21 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   addUser(user: UserInterface): void {
+    this.loading$.next(true);
     this.http.post<UserInterface>(this.baseURL, user)
       .subscribe(() => this.getUsers()
     );
   }
 
   deleteUser(id: number): void {
+    this.loading$.next(true);
     this.http.delete<UserInterface>(this.baseURL + id)
       .subscribe(() => this.getUsers()
     );
   }
 
   updateUser(user: UserInterface, id: number): void {
+    this.loading$.next(true);
     this.http.put<UserInterface>(this.baseURL + id, user)
       .subscribe(() => {
         this.getUser(id);
