@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ApiService } from 'src/app/services/users.service';
 import { UserInterface } from 'src/app/types/user.type';
@@ -10,12 +10,15 @@ import { UserInterface } from 'src/app/types/user.type';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
-  user: UserInterface | undefined;
+  user: UserInterface | null | undefined;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private api: ApiService,
-  ) {}
+  ) {
+    this.api.currentUser$.subscribe((user) => this.user = user);
+  }
 
   ngOnInit(): void {
     this.getUser();
@@ -24,15 +27,10 @@ export class DetailsComponent implements OnInit {
   getUser(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
 
-    this.api.getUser(id)
-      .subscribe({
-        next: (user) => {
-          this.user = user;
-          this.api.currentUser.next(user);
-        },
-        error: (error) => {
-          console.error('error while fetching users: ', error.message)
-        }
-      });
+    if (isNaN(id)) {
+      this.router.navigate(['404']);
+    }
+
+    this.api.getUser(id);
   }
 }
