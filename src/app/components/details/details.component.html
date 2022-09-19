@@ -1,4 +1,6 @@
 <mat-card class="details">
+  <mat-spinner class="spinner" *ngIf="loading" [diameter]="48"></mat-spinner>
+
   <mat-card-title-group class="details-titleGroup">
     <mat-card-title class="details-title">
       {{user?.fullname | uppercase}}

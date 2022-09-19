@@ -20,19 +20,22 @@ export class ApiService {
 
   addUser(user: UserInterface): void {
     this.http.post<UserInterface>(this.baseURL, user)
-      .subscribe(() => this.getUsers());
+      .subscribe(() => this.getUsers()
+    );
   }
 
   deleteUser(id: number): void {
     this.http.delete<UserInterface>(this.baseURL + id)
-      .subscribe(() => this.getUsers());
+      .subscribe(() => this.getUsers()
+    );
   }
 
   updateUser(user: UserInterface, id: number): void {
     this.http.put<UserInterface>(this.baseURL + id, user)
       .subscribe(() => {
         this.getUser(id);
-      })
+      }
+    );
   }
 
   getUsers(): void {
@@ -41,11 +44,17 @@ export class ApiService {
       .subscribe((userList) => {
         this.usersList$.next(userList);
         this.loading$.next(false);
-      });
+      }
+    );
   }
 
   getUser(id: number): void {
+    this.loading$.next(true);
     this.http.get<UserInterface>(this.baseURL + id)
-      .subscribe((user) => this.currentUser$.next(user));
+      .subscribe((user) => {
+        this.currentUser$.next(user);
+        this.loading$.next(false);
+      }
+    );
   }
 }

@@ -2,6 +2,10 @@
   max-width: 1600px;
   margin: 0 auto;
   padding: 0 16px;
+
+  & .spinner {
+    margin: 16px auto;
+  }
 }
 
 .table {
@@ -36,8 +40,4 @@
 
 .mat-column-action {
   width: 1px;;
-}
-
-.spinner {
-  margin: 16px auto;
 }

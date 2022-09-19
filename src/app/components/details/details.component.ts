@@ -11,12 +11,14 @@ import { UserInterface } from 'src/app/types/user.type';
 })
 export class DetailsComponent implements OnInit {
   user: UserInterface | null | undefined;
+  loading = false;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private api: ApiService,
   ) {
+    this.api.loading$.subscribe((isLoading) => this.loading = isLoading);
     this.api.currentUser$.subscribe((user) => this.user = user);
   }
 
