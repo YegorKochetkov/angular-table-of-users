@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
 
+import { environment } from 'src/environments/environment';
 import { UserInterface } from 'src/app/types/user.type';
 
 @Injectable({
@@ -10,7 +11,7 @@ import { UserInterface } from 'src/app/types/user.type';
 })
 
 export class ApiService {
-  baseURL = 'http://localhost:3000/users/';
+  baseURL = environment.baseURL;
 
   usersList$ = new BehaviorSubject<UserInterface[]>([]);
   currentUser$ = new BehaviorSubject<UserInterface | null>(null);
