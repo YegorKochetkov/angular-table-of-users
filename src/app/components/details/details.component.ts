@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ApiService } from 'src/app/services/users.service';
@@ -9,7 +9,7 @@ import { UserInterface } from 'src/app/types/user.type';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit, OnDestroy {
   user: UserInterface | null | undefined;
   loading = false;
 
@@ -24,6 +24,10 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
+  }
+
+  ngOnDestroy(): void {
+    this.api.currentUser$.next(null);
   }
 
   getUser(): void {
