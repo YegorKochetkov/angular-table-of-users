@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-page404',
@@ -10,16 +9,10 @@ import { Location } from '@angular/common';
 export class Page404Component implements OnInit {
 
   constructor(
-    private location: Location,
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-  }
-
-  goBack() {
-    this.location.back();
-  }
+  ngOnInit(): void {}
 
   goHome() {
     this.router.navigate(['/']);
