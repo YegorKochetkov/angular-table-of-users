@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiURL: 'http://localhost:5000/users/',
+  apiURL: 'https://angular-table-of-users.herokuapp.com/users/',
   port: 5000
 };
