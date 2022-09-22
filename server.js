@@ -1,4 +1,4 @@
-import { environment } from 'src/environments/environment';
+ const environment = require('src/environments/environment');
 
 const jsonServer = require("json-server");
 const server = jsonServer.create();
