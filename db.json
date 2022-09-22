@@ -23,6 +23,54 @@
         "country": "Japan"
       },
       "id": 2
+    },
+    {
+      "fullname": "Cassiopeia Sirius",
+      "email": "kochetkovyegornikolaevich@gmail.com",
+      "phone": "+383333333333",
+      "address": {
+        "street": "vul. Romana Atamanjuka, bud.42",
+        "city": "Sumy",
+        "state": "Sumska",
+        "country": "Ukraine"
+      },
+      "id": 3
+    }
+    {
+      "fullname": "John Smith",
+      "email": "JohnSmith@mail.com",
+      "phone": "+380123456789",
+      "address": {
+        "street": "Main street",
+        "city": "London",
+        "state": "London",
+        "country": "UK"
+      },
+      "id": 4
+    },
+    {
+      "fullname": "Dan Abramov",
+      "email": "DanAmbramov@mail.com",
+      "phone": "+380123456788",
+      "address": {
+        "street": "UpperSide street",
+        "city": "Tokyo",
+        "state": "",
+        "country": "Japan"
+      },
+      "id": 5
+    },
+    {
+      "fullname": "Cassiopeia Sirius",
+      "email": "kochetkovyegornikolaevich@gmail.com",
+      "phone": "+383333333333",
+      "address": {
+        "street": "vul. Romana Atamanjuka, bud.42",
+        "city": "Sumy",
+        "state": "Sumska",
+        "country": "Ukraine"
+      },
+      "id": 6
     }
   ]
 }
