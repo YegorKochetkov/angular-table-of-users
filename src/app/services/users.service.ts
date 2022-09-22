@@ -6,12 +6,13 @@ import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserInterface } from 'src/app/types/user.type';
 
+const apiURL = environment.apiURL;
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class ApiService {
-  baseURL = environment.baseURL;
 
   usersList$ = new BehaviorSubject<UserInterface[]>([]);
   currentUser$ = new BehaviorSubject<UserInterface | null>(null);
@@ -21,13 +22,13 @@ export class ApiService {
 
   addUser(user: UserInterface): void {
     this.loading$.next(true);
-    this.http.post<UserInterface>(this.baseURL, user)
+    this.http.post<UserInterface>(apiURL, user)
       .subscribe(() => this.getUsers());
   }
 
   deleteUser(id: number): void {
     this.loading$.next(true);
-    this.http.delete<UserInterface>(this.baseURL + id)
+    this.http.delete<UserInterface>(apiURL + id)
       .subscribe(() => {
         const updatedUsersList = this.usersList$
           .getValue()
@@ -41,7 +42,7 @@ export class ApiService {
 
   updateUser(user: UserInterface, id: number): void {
     this.loading$.next(true);
-    this.http.put<UserInterface>(this.baseURL + id, user)
+    this.http.put<UserInterface>(apiURL + id, user)
       .subscribe(() => {
         this.getUser(id);
       }
@@ -50,7 +51,7 @@ export class ApiService {
 
   getUsers(): void {
     this.loading$.next(true);
-    this.http.get<UserInterface[]>(this.baseURL)
+    this.http.get<UserInterface[]>(apiURL)
       .subscribe((userList) => {
         this.usersList$.next(userList);
         this.loading$.next(false);
@@ -60,7 +61,7 @@ export class ApiService {
 
   getUser(id: number): void {
     this.loading$.next(true);
-    this.http.get<UserInterface>(this.baseURL + id)
+    this.http.get<UserInterface>(apiURL + id)
       .subscribe((user) => {
         this.currentUser$.next(user);
         this.loading$.next(false);
