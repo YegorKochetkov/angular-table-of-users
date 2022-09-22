@@ -39,7 +39,7 @@ export class DialogComponent implements OnInit {
       phone: ['', [
         Validators.required,
         Validators.pattern(
-          /^(\+38)?\s?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{2}[-.\s]?\d{2}$/
+          /^(\+\d{1,3})?\s?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{2}[-.\s]?\d{2}$/
         )
       ]],
       address: this.formBuilder.group({
