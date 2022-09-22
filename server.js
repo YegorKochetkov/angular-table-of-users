@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
- const environment = require('src/environments/environment');
-
->>>>>>> 9aeb4dd10906d89a27a4da33067cdf13f43ef0fe
 const jsonServer = require("json-server");
 const server = jsonServer.create();
 const router = jsonServer.router('./db.json');
