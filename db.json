@@ -1,76 +1,26 @@
 {
   "users": [
     {
-      "fullname": "Yegor Nickolayevich Kochetkov",
-      "email": "kegor.fx@gmail.com",
-      "phone": "+380667237224",
+      "fullname": "John Smith",
+      "email": "JohnSmith@mail.com",
+      "phone": "+380123456789",
       "address": {
-        "street": "вул. Романа Атаманюка, б.43А, кв.118",
-        "city": "Сумы",
-        "state": "Сумская",
-        "country": "Ukraine"
+        "street": "Main street",
+        "city": "London",
+        "state": "London",
+        "country": "UK"
       },
-      "id": 3
+      "id": 1
     },
     {
-      "fullname": "Полина Кочеткова",
-      "email": "kegor.fx@gmail.com",
-      "phone": "+380667237224",
+      "fullname": "Dan Abramov",
+      "email": "DanAmbramov@mail.com",
+      "phone": "+380123456788",
       "address": {
-        "street": "вул. Романа Атаманюка, б.43А, кв.118",
-        "city": "Сумы",
-        "state": "Сумская",
-        "country": "Украина"
+        "street": "UpperSide street",
+        "city": "Tokyo",
+        "state": "",
+        "country": "Japan"
       },
-      "id": 8
-    },
-    {
-      "fullname": "Егор Kochetkov",
-      "email": "kegor.fx@gmail.com",
-      "phone": "+380667237224",
-      "address": {
-        "street": "40031 (вулиця Ковпака, 59/4)",
-        "city": "Сумы",
-        "state": "Сумская",
-        "country": "Украина"
-      },
-      "id": 9
-    },
-    {
-      "fullname": "Єгор Миколайович Кочетков",
-      "email": "kegor.fx@gmail.com",
-      "phone": "+380667237224",
-      "address": {
-        "street": "40031 (вулиця Ковпака, 59/4)",
-        "city": "Сумы",
-        "state": "Сумская",
-        "country": "Украина"
-      },
-      "id": 10
-    },
-    {
-      "fullname": "Полина Кочеткова",
-      "email": "kegor.fx@gmail.com",
-      "phone": "+380667237224",
-      "address": {
-        "street": "вул. Романа Атаманюка, б.43А, кв.118",
-        "city": "Сумы",
-        "state": "Сумская",
-        "country": "Украина"
-      },
-      "id": 11
-    },
-    {
-      "fullname": "Yegor Nickolayevich Kochetkov",
-      "email": "kochetkovyegornikolaevich@gmail.com",
-      "phone": "+380667237224",
-      "address": {
-        "street": "вул. Романа Атаманюка, б.43А, кв.118",
-        "city": "Сумы",
-        "state": "Сумская",
-        "country": "Украина"
-      },
-      "id": 13
+      "id": 2
     }
-  ]
-}
