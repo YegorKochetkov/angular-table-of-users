@@ -3,7 +3,8 @@ import {
   OnInit,
   AfterViewInit,
   ViewChild,
-  OnDestroy
+  OnDestroy,
+  AfterViewChecked
 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -24,12 +25,14 @@ import { DeleteConfirmationComponent } from 'src/app/components/delete-confirmat
   styleUrls: ['./table.component.scss']
 })
 
-export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
+export class TableComponent implements OnInit, OnDestroy, AfterViewInit, AfterViewChecked {
   private routeSubscription: Subscription | undefined;
   loading = false;
   dataSource!: MatTableDataSource<UserInterface>;
   pageEvent: PageEvent | undefined;
   tablePageIndex = new BehaviorSubject<number>(0);
+  urlParamsPage = new BehaviorSubject<number>(0);
+  numberOfTablePages = new BehaviorSubject<number | null>(null);
   pageSize = new BehaviorSubject<number>(10);
   displayedColumns: string[] = [
     'id', 'fullname', 'email', 'phone', 'city', 'country', 'street', 'action'
@@ -52,29 +55,30 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
       this.dataSource.sort = this.sort || null;
     });
 
-    this.routeSubscription = this.route.params.subscribe(params => {
-      const currTablePage = parseInt(params['page']);
+    this.routeSubscription = this.route.params.subscribe((params) => {
+      const currTablePage = parseInt(params['page'], 10);
 
       if (isNaN(currTablePage)) {
-        this.router.navigate(['/']);
+        this.router.navigate(['']);
       }
 
-      if (!!currTablePage) {
-        this.tablePageIndex.next(currTablePage - 1);
+      this.tablePageIndex.next(currTablePage - 1);
 
-        setTimeout(() => {
-          if (this.dataSource?.paginator) {
-            const numberOfTablePages = this.dataSource.paginator.getNumberOfPages();
+      setTimeout(() => {
+        if (this.dataSource.paginator) {
+          this.dataSource.paginator.pageIndex = this.tablePageIndex.getValue();
+          this.dataSource.paginator = this.paginator || null;
+          this.dataSource.sort = this.sort || null;
+        }
+      });
+    });
 
-            if ((currTablePage - 1) > numberOfTablePages) {
-              this.router.navigate(['/dashboards', numberOfTablePages]);
-            }
-
-            this.dataSource.paginator.pageIndex = currTablePage - 1;
-            this.dataSource.sort = this.sort || null;
-          }
-        }, 0);
-      }
+    this.numberOfTablePages.subscribe((pages) => {
+      setTimeout(() => {
+        if (pages && pages < (this.tablePageIndex.getValue() + 1)) {
+          this.router.navigate(['404']);
+        }
+      });
     });
   }
 
@@ -97,11 +101,15 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
     this.dataSource.sort = this.sort || null;
   }
 
-  applyFilter(event: Event) {
+  ngAfterViewChecked() {
+    this.numberOfTablePages.next(this.dataSource.paginator?.getNumberOfPages() || null);
+    // set right page of table after table init
     if (this.dataSource.paginator) {
-      this.dataSource.paginator.pageIndex = this.tablePageIndex.getValue() - 1;
+      this.dataSource.paginator.pageIndex = this.tablePageIndex.getValue();
     }
+  }
 
+  applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
 
     this.dataSource.filterPredicate = (data, filter) => {
@@ -114,7 +122,9 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   goToUserDetails(id: number) {
+    this.loading = true;
     this.router.navigate(['/details', id]);
+    this.loading = false;
   }
 
   handlePaginator(event: PageEvent | undefined) {

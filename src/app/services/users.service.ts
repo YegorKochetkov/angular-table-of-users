@@ -13,7 +13,6 @@ const apiURL = environment.apiURL;
 })
 
 export class ApiService {
-
   usersList$ = new BehaviorSubject<UserInterface[]>([]);
   currentUser$ = new BehaviorSubject<UserInterface | null>(null);
   loading$ = new BehaviorSubject<boolean>(false);

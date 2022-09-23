@@ -29,7 +29,7 @@
       "email": "kochetkovyegornikolaevich@gmail.com",
       "phone": "+383333333333",
       "address": {
-        "street": "vul. Romana Atamanjuka, bud.42",
+        "street": "vul. Romana FEdd, bud.42",
         "city": "Sumy",
         "state": "Sumska",
         "country": "Ukraine"
@@ -62,12 +62,12 @@
     },
     {
       "fullname": "Cassiopeia Sirius",
-      "email": "kochetkovyegornikolaevich@gmail.com",
+      "email": "danAb@mail.com",
       "phone": "+383333333333",
       "address": {
-        "street": "vul. Romana Atamanjuka, bud.42",
-        "city": "Sumy",
-        "state": "Sumska",
+        "street": "vul. Atamanjuka, bud.42",
+        "city": "Odessa",
+        "state": "Odessa",
         "country": "Ukraine"
       },
       "id": 6

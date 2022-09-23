@@ -175,8 +175,8 @@
     <mat-paginator
       [pageSizeOptions]="[5, 10, 25, 100]"
       aria-label="Select page of users"
-      [pageIndex]="tablePageIndex.getValue()"
-      [pageSize]="pageSize.getValue()"
+      [pageIndex]="tablePageIndex | async"
+      [pageSize]="pageSize | async"
       (page)="handlePaginator($event)"
     ></mat-paginator>
   </div>
