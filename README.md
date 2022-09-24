@@ -1,27 +1,24 @@
-# AngularTableOfUsers
+## Task: implement a fake chat page with the following requirements:
+- create an application with two pages
+- on one page, display a table with users. by clicking on the user, go to the page with detailed user data
+- implement the ability to add\delete\edit a user
+- implement at least phone number validation
+- implement lazy-loading for user details page
+- use Angular
+- use a json-server
+- use Bootstrap or MUI
+- adaptive layout
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
+## Stack:
+- Angular 14
+- Angular reactive form
+- Angular Material
+- rxjs
+- CRUD
+- lazy loading
+- json-server
+- Typescript
+- SCSS
+- localStorage
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## [Демо](https://yegorkochetkov.github.io/angular-table-of-users/)
