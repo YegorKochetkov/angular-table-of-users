@@ -21,4 +21,4 @@
 - SCSS
 - localStorage
 
-## [Демо](https://yegorkochetkov.github.io/angular-table-of-users/)
+## [Demo](https://yegorkochetkov.github.io/angular-table-of-users/)
