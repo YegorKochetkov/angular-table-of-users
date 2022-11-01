@@ -1,3 +1,5 @@
+# [Demo](https://yegorkochetkov.github.io/angular-table-of-users/)
+
 ## Task: implement a fake chat page with the following requirements:
 - create an application with two pages
 - on one page, display a table with users. by clicking on the user, go to the page with detailed user data
@@ -21,4 +23,3 @@
 - SCSS
 - localStorage
 
-## [Demo](https://yegorkochetkov.github.io/angular-table-of-users/)
